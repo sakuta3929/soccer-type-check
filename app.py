@@ -333,7 +333,7 @@ if st.button("診断結果を見る"):
         "H": scores["H"]
     }
 
-    response = requests.post(sheet_url, json=data)
+    response = requests.post(sheet_url, data=data)
 
     st.write("送信結果：", response.status_code)
     st.write("返ってきた内容：", response.text)
