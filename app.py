@@ -1,4 +1,7 @@
 import streamlit as st
+import requests
+
+sheet_url = st.secrets["sheet_url"]
 
 # -------------------------------------
 # タイトル
@@ -316,6 +319,21 @@ if st.button("診断結果を見る"):
 
     # A~Hを実際のタイプ名に変換
     result_name = type_names[result]
+    
+    data = {
+        "name": name,
+        "result": result_name,
+        "A": scores["A"],
+        "B": scores["B"],
+        "C": scores["C"],
+        "D": scores["D"],
+        "E": scores["E"],
+        "F": scores["F"],
+        "G": scores["G"],
+        "H": scores["H"]
+    }
+
+    requests.post(sheet_url, json=data)
     
     # 結果表示
     st.success("🎉診断結果！")
