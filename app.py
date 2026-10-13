@@ -12,10 +12,8 @@ st.write("あなたのサッカータイプを診断します。")
 
 name = st.text_input("名前を入力してください。")
 
-if st.button("診断スタート"):
-    st.write(f"{name}さん、診断スタート！")
 if not name.strip():
-    st.info("診断を始めるには、な目を入力してください。")
+    st.info("診断を始めるには、名前を入力してください。")
 
 
 # -------------------------------------
@@ -297,7 +295,11 @@ if "finished" not in st.session_state:
 
 # 診断スタート
 if not st.session_state.started:
-    if st.button("診断スタート", disabled=not name.strip()):
+    if st.button(
+        "診断スタート",
+        key="start_diagnosis",
+        disabled=not name.strip()
+    ):
         st.session_state.started = True
         st.rerun()
 
